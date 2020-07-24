@@ -1,0 +1,62 @@
+$col-nav-bg: #02231c;
+$col-nav-col: #4dd8ad;
+$col-primary: #4dd8ad;
+$col-secundary: #02231c;
+
+*::before,
+*::after,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    nav {
+        background-color: $col-nav-bg;
+        color: $col-nav-col;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+        a {
+            color: $col-nav-col;
+            font-size: 1rem;
+            padding: 20px 14px;
+            text-decoration: none;
+            display: inline-block;
+
+            &:hover {
+                background-color: $col-primary;
+                color: $col-secundary;
+            }
+        }
+    }
+}
+
+section {
+    height: 100vh;
+    background-color: #ccc;
+}
