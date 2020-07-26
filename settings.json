@@ -1,0 +1,29 @@
+{
+    "navLinks": [
+        {
+            "name": "home",
+            "href": "#",
+            "goto": "#home"
+        },
+        {
+            "name": "products",
+            "href": "/products.html",
+            "goto": "#products"
+        },
+        {
+            "name": "services",
+            "href": "#",
+            "goto": "#services"
+        },
+        {
+            "name": "about",
+            "href": null,
+            "goto": "#about"
+        },
+        {
+            "name": "contacts",
+            "href": null,
+            "goto": "#contacts"
+        }
+    ]
+}
