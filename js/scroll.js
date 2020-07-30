@@ -6,7 +6,7 @@ function smoothScroll(target, duration) {
     }
     let tPos = t.getBoundingClientRect().top;
     let startPosintion = window.pageYOffset;
-    let distance = tPos;
+    let distance = tPos - navigationHeight;
     let startTime = null;
 
     function animation(currentTime) {
@@ -18,6 +18,7 @@ function smoothScroll(target, duration) {
         window.scrollTo(0, run);
 
         if (timeElapsed < duration) requestAnimationFrame(animation);
+        else afterScrollHandler();
     }
 
     function easeInOut(t, b, c, d) {
@@ -39,15 +40,33 @@ function smoothScroll(target, duration) {
     requestAnimationFrame(animation);
 }
 
-function setUpScroll() {
+function afterScrollHandler() {
+    if (secondAnim) {
+        secondAnim = false;
+    } else {
+        setTimeout(() => (scrollingLinkPressed = false), 20);
+    }
+}
+
+function postAfterScrollHandler() {}
+
+function setupScroll() {
     let links = document.querySelectorAll("a");
 
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener("click", function () {
+            if (scrollingLinkPressed) secondAnim = true;
+            scrollingLinkPressed = true;
+            console.log(scrollingLinkPressed);
             let target = links[i].getAttribute("goto");
             if (target != null) {
                 smoothScroll(target, 500);
             }
         });
     }
+    if (settings.navType == 0 || settings.navType == 1) {
+        navigationHeight = document.querySelector("header nav").clientHeight;
+    }
 }
+let secondAnim = false;
+let navigationHeight = 0;
