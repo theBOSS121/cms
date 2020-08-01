@@ -1,12 +1,20 @@
-$font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+$font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 $col-nav-bg: #02231c;
 $col-nav-col: #4dd8ad;
 $col-primary: #4dd8ad;
 $col-secundary: #02231c;
 
-// 0 -> fixed
-$nav-type: 1;
+//  0 -> fixed, 1 -> fixed with hidding
+// set in settings nav-type (class added in navigation.js)
+$nav-type: -1;
+nav.nav-type-0 {
+	$nav-type: 0;
+}
+nav.nav-type-1 {
+	$nav-type: 1;
+}
+
 $nav-height: 60px;
 $nav-links-font-size: 1rem;
 $nav-links-space-x: 20px;
@@ -14,111 +22,111 @@ $nav-links-space-x: 20px;
 *::before,
 *::after,
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $font;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: $font;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 body {
-    @if ($nav-type == 0 or $nav-type == 1) {
-        margin-top: $nav-height;
-    }
+	// @if ($nav-type == 0 or $nav-type == 1) {
+	margin-top: $nav-height;
+	// }
 }
 
 header {
-    nav {
-        z-index: 1024;
-        @if ($nav-type == 0 or $nav-type == 1) {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-        @if ($nav-type == 1) {
-            &.hidden {
-                top: -$nav-height;
-            }
-        }
-        background-color: $col-nav-bg;
-        color: $col-nav-col;
-        height: $nav-height;
-        transition: 0.3s all ease-in-out;
+	nav {
+		z-index: 1024;
+		&.nav-type-0,
+		&.nav-type-1 {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+		&.nav-type-1.hidden {
+			top: -$nav-height;
+		}
+		background-color: $col-nav-bg;
+		color: $col-nav-col;
+		height: $nav-height;
+		transition: 0.3s all ease-in-out;
 
-        .container {
-            height: $nav-height;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+		.container {
+			height: $nav-height;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 
-        .nav-logo {
-            width: 50px;
-            height: 50px;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
+		.nav-logo {
+			width: 50px;
+			height: 50px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
 
-        ul {
-            list-style: none;
-            display: flex;
-            background-color: $col-nav-bg;
-            li {
-                position: relative;
-                a {
-                    color: $col-nav-col;
-                    font-size: $nav-links-font-size;
-                    line-height: $nav-links-font-size;
-                    padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2) $nav-links-space-x;
-                    text-decoration: none;
-                    display: inline-block;
+		ul {
+			list-style: none;
+			display: flex;
+			background-color: $col-nav-bg;
+			li {
+				position: relative;
+				a {
+					color: $col-nav-col;
+					font-size: $nav-links-font-size;
+					line-height: $nav-links-font-size;
+					padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2)
+						$nav-links-space-x;
+					text-decoration: none;
+					display: inline-block;
 
-                    &:hover {
-                        background-color: $col-primary;
-                        color: $col-secundary;
-                    }
-                }
-            }
-        }
+					&:hover {
+						background-color: $col-primary;
+						color: $col-secundary;
+					}
+				}
+			}
+		}
 
-        ul li:hover .drop-down {
-            transform: translateY(0);
-        }
+		ul li:hover .drop-down {
+			transform: translateY(0);
+		}
 
-        .drop-down {
-            z-index: -1;
-            position: absolute;
-            transform: translateY(-100%);
-            flex-direction: column;
-            min-width: 100%;
-            background-color: $col-nav-bg;
-            border-radius: 0 0 4px 4px;
-            // border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
-            transition: 0.3s all ease-in-out;
-            a {
-                white-space: nowrap;
-                border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-                width: 100%;
-            }
-            li:last-child a {
-                border-bottom: none;
-            }
-        }
-    }
+		.drop-down {
+			z-index: -1;
+			position: absolute;
+			transform: translateY(-100%);
+			flex-direction: column;
+			min-width: 100%;
+			background-color: $col-nav-bg;
+			border-radius: 0 0 4px 4px;
+			// border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
+			// border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+			// border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
+			// border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
+			transition: 0.3s all ease-in-out;
+			a {
+				white-space: nowrap;
+				border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+				width: 100%;
+			}
+			li:last-child a {
+				border-bottom: none;
+			}
+		}
+	}
 }
 
 section {
-    height: 100vh;
-    background-color: #ccc;
+	height: 100vh;
+	background-color: #ccc;
 }
