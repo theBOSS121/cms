@@ -56,10 +56,9 @@ function setupScroll() {
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener("click", function () {
             if (scrollingLinkPressed) secondAnim = true;
-            scrollingLinkPressed = true;
-            console.log(scrollingLinkPressed);
             let target = links[i].getAttribute("goto");
             if (target != null) {
+                scrollingLinkPressed = true;
                 smoothScroll(target, 500);
             }
         });

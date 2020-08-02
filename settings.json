@@ -1,5 +1,5 @@
 {
-    "navType": 0,
+    "navType": 1,
     "navLinks": [
         {
             "name": "home",
@@ -8,12 +8,12 @@
         },
         {
             "name": "products",
-            "href": "/products.html",
+            "href": null,
             "goto": "#products",
             "dropDown": [
                 {
                     "name": "#products",
-                    "href": null,
+                    "href": "./products.html",
                     "goto": "#products"
                 },
                 {
@@ -61,5 +61,5 @@
             "goto": "#contacts"
         }
     ],
-    "nav-expend": "md"
+    "navExpend": "sm"
 }

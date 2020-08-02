@@ -11,6 +11,7 @@ $col-secundary: #02231c;
 $nav-height: 60px;
 $nav-links-font-size: 1rem;
 $nav-links-space-x: 20px;
+$nav-menu-btn-size: 1.5rem;
 
 //  css reset ---------------------------------------------------------
 *::before,
@@ -21,20 +22,16 @@ $nav-links-space-x: 20px;
     box-sizing: border-box;
     font-family: $font;
 }
-// Font Awesome in pseudo elements
-// brands
-// something::before {
-//     font-family: "Font Awesome 5 Brands";
-//     content: "\f16d";
-//     color: #000;
-// }
-// other icons
-// something::after {
-//     font-family: "Font Awesome 5 Free";
-//     font-weight: 900;
-//     content: "\f0dd";
-// }
-// bootstrap ----------------------------------------------------------
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+// commmon ----------------------------------------------------------
 .d-none {
     display: none;
 }
@@ -89,8 +86,16 @@ $nav-links-space-x: 20px;
 .align-items-stretch {
     align-items: stretch;
 }
+.text-align-center {
+    text-align: center;
+}
+.text-align-left {
+    text-align: left;
+}
+.text-align-right {
+    text-align: right;
+}
 
-// common ------------------------------------------------------------
 .container {
     width: 90%;
     max-width: 1200px;
@@ -119,12 +124,10 @@ header {
 
         .container {
             height: $nav-height;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .nav-logo {
+            z-index: 1;
             min-width: 50px;
             width: 50px;
             height: 50px;
@@ -134,12 +137,10 @@ header {
             }
         }
 
-        ul {
-            list-style: none;
-            display: flex;
-            & > li {
+        .main-nav {
+            li {
                 position: relative;
-                & > a {
+                a {
                     position: relative;
                     z-index: 1;
                     color: $col-nav-col;
@@ -147,7 +148,6 @@ header {
                     font-size: $nav-links-font-size;
                     line-height: $nav-links-font-size;
                     padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2) $nav-links-space-x;
-                    text-decoration: none;
                     display: inline-block;
 
                     &:hover {
@@ -155,46 +155,96 @@ header {
                         color: $col-secundary;
                     }
                 }
+                // navigation dropdown styles
+                &:hover .drop-down {
+                    transform: translateY(0);
+                    z-index: 0;
+                }
+                .drop-down {
+                    position: absolute;
+                    transform: translateY(-100%);
+                    flex-direction: column;
+                    min-width: 100%;
+                    background-color: $col-nav-bg;
+                    border-radius: 0 0 4px 4px;
+                    // border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    transition: 0.3s transform ease-in-out;
+                    a {
+                        white-space: nowrap;
+                        border-bottom: 1px solid rgba($color: $col-nav-col, $alpha: 0.2);
+                        width: 100%;
+                    }
+                    li:last-child a {
+                        border-bottom: none;
+                    }
+                }
             }
         }
-
-        ul li:hover .drop-down {
-            transform: translateY(0);
-            z-index: 0;
-        }
-
-        .drop-down {
-            position: absolute;
+        // when navbar hides dropdowns should hide as well
+        &.nav-type-1.hidden .main-nav li:hover .drop-down {
             transform: translateY(-100%);
-            flex-direction: column;
-            min-width: 100%;
+        }
+        .main-nav-mobile {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            right: -100%;
             background-color: $col-nav-bg;
-            border-radius: 0 0 4px 4px;
-            // border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
-            // border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
-            transition: 0.3s transform ease-in-out;
-            a {
-                white-space: nowrap;
-                border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-                width: 100%;
-            }
-            li:last-child a {
-                border-bottom: none;
+            transition: 0.3s all ease-in-out;
+            li {
+                a {
+                    position: relative;
+                    z-index: 1;
+                    color: $col-nav-col;
+                    background-color: $col-nav-bg;
+                    font-size: $nav-links-font-size;
+                    line-height: $nav-links-font-size;
+                    display: inline-block;
+
+                    &:hover {
+                        color: darken($color: $col-nav-col, $amount: 20);
+                    }
+                }
             }
         }
-    }
 
-    .nav-logo img {
-        min-width: 100%;
+        .main-nav-mobile.show {
+            right: 0;
+        }
+
+        .show-hide-menu {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: url("../../img/open-menu.svg");
+            background-size: 40px;
+            background-position: center;
+            float: right;
+            transition: 0.6s;
+            cursor: pointer;
+            /* bug in safari strange rotation of svg, still strange for the first time */
+            transform-origin: center center;
+            transform-box: fill-box;
+            &:hover {
+                background: url("../../img/open-menu-hovered.svg");
+                transform: rotate(180deg);
+            }
+            &.close {
+                background: url("../../img/close-menu.svg");
+                transform: rotate(360deg);
+            }
+        }
     }
 }
 
 // pages --------------------------------------------------------------
 
 section {
-    height: 50vh;
+    height: 200vh;
 }
 
 // footer--------------------------------------------------------------
@@ -204,7 +254,7 @@ section {
 // @media (max-width: 575.98px) { }
 
 @media (min-width: 576px) {
-    // bootstrap ------------------------------------------------------
+    // common ------------------------------------------------------
     .d-sm-none {
         display: none;
     }
@@ -259,7 +309,15 @@ section {
     .align-items-sm-stretch {
         align-items: stretch;
     }
-    // commmon ------------------------------------------------------
+    .text-align-sm-center {
+        text-align: center;
+    }
+    .text-align-sm-left {
+        text-align: left;
+    }
+    .text-align-sm-right {
+        text-align: right;
+    }
     // header -------------------------------------------------------
     // pages --------------------------------------------------------
     // footer -------------------------------------------------------
@@ -268,7 +326,7 @@ section {
 // @media (max-width: 767.98px) { }
 
 @media (min-width: 768px) {
-    // bootstrap ------------------------------------------------------
+    // commmon ------------------------------------------------------
     .d-md-none {
         display: none;
     }
@@ -323,7 +381,15 @@ section {
     .align-items-md-stretch {
         align-items: stretch;
     }
-    // commmon ------------------------------------------------------
+    .text-align-md-center {
+        text-align: center;
+    }
+    .text-align-md-left {
+        text-align: left;
+    }
+    .text-align-md-right {
+        text-align: right;
+    }
     // header -------------------------------------------------------
     // pages --------------------------------------------------------
     // footer -------------------------------------------------------
@@ -332,7 +398,7 @@ section {
 // @media (max-width: 991.98px) { }
 
 @media (min-width: 992px) {
-    // bootstrap ------------------------------------------------------
+    // commmon ------------------------------------------------------
     .d-lg-none {
         display: none;
     }
@@ -387,7 +453,15 @@ section {
     .align-items-lg-stretch {
         align-items: stretch;
     }
-    // commmon ------------------------------------------------------
+    .text-align-lg-center {
+        text-align: center;
+    }
+    .text-align-lg-left {
+        text-align: left;
+    }
+    .text-align-lg-right {
+        text-align: right;
+    }
     // header -------------------------------------------------------
     // pages --------------------------------------------------------
     // footer -------------------------------------------------------
@@ -396,7 +470,7 @@ section {
 // @media (max-width: 1199.98px) { }
 
 @media (min-width: 1200px) {
-    // bootstrap ------------------------------------------------------
+    // commmon ------------------------------------------------------
     .d-xl-none {
         display: none;
     }
@@ -451,8 +525,32 @@ section {
     .align-items-xl-stretch {
         align-items: stretch;
     }
-    // commmon ------------------------------------------------------
+    .text-align-xl-center {
+        text-align: center;
+    }
+    .text-align-xl-left {
+        text-align: left;
+    }
+    .text-align-xl-right {
+        text-align: right;
+    }
     // header -------------------------------------------------------
     // pages --------------------------------------------------------
     // footer -------------------------------------------------------
 }
+
+// samples ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Font Awesome in pseudo elements ----------------------------------
+// brands
+// something::before {
+//     font-family: "Font Awesome 5 Brands";
+//     content: "\f16d";
+//     color: #000;
+// }
+// other icons
+// something::after {
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     content: "\f0dd";
+// }

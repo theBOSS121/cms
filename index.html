@@ -5,29 +5,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CMS</title>
         <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon" />
-        <!-- to display FontAwesome as a font (::before and ::after) -->
+        <!-- FontAwesome font (::before and ::after) -->
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+        <!-- styles that get compiled from scss/style.scss -->
         <link rel="stylesheet" href="dist/css/style.min.css" />
     </head>
     <body>
         <header>
             <nav>
-                <div class="container">
+                <div class="container d-flex justify-content-between align-items-center">
                     <a href="#" goto="body" class="nav-logo">
                         <img src="img/logo-dark.png" alt="" />
                     </a>
-                    <ul class="main-nav d-none d-sm-flex">
+                    <ul class="main-nav">
                         <!-- here will be generated main navigation  -->
                     </ul>
-                    <ul class="main-nav-mobile d-sm-none">
+                    <ul class="main-nav-mobile">
                         <!-- here will be generated mobile main navigation  -->
-                        <p>Mobile main navigation</p>
                     </ul>
+                    <div href="#" class="show-hide-menu"></a>
                 </div>
             </nav>
         </header>
-
-        <i class="fab fa-facebook-f"></i>
 
         <section id="home">Home</section>
         <section id="products">Products</section>
@@ -36,10 +35,11 @@
         <section id="contacts">Contact</section>
         <div class="try">.try</div>
 
+        <!-- Scripts -->
         <script src="js/main.js"></script>
         <script src="js/navigation.js"></script>
         <script src="js/scroll.js"></script>
-        <!-- to display FontAwesome as SVG in HTML -->
+        <!-- FontAwesome SVG (HTML) -->
         <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     </body>
 </html>
