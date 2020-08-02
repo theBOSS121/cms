@@ -1,132 +1,445 @@
-$font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+// variables ----------------------------------------------------------
+$font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
 $col-nav-bg: #02231c;
 $col-nav-col: #4dd8ad;
 $col-primary: #4dd8ad;
 $col-secundary: #02231c;
 
-//  0 -> fixed, 1 -> fixed with hidding
+//  0 -> fixed, 1 -> fixed with hidding, everything else -> top of page
 // set in settings nav-type (class added in navigation.js)
-$nav-type: -1;
-nav.nav-type-0 {
-	$nav-type: 0;
-}
-nav.nav-type-1 {
-	$nav-type: 1;
-}
-
 $nav-height: 60px;
 $nav-links-font-size: 1rem;
 $nav-links-space-x: 20px;
 
+//  css reset ---------------------------------------------------------
 *::before,
 *::after,
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: $font;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+}
+// bootstrap ----------------------------------------------------------
+.d-none {
+    display: none;
+}
+.d-flex {
+    display: flex;
+}
+.d-block {
+    display: block;
+}
+.flex-direction-row {
+    flex-direction: row;
+}
+.flex-direction-column {
+    flex-direction: column;
+}
+.flex-direction-row-reverse {
+    flex-direction: row-reverse;
+}
+.flex-direction-column-reverse {
+    flex-direction: column-reverse;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-start {
+    justify-content: flex-start;
+}
+.justify-content-end {
+    justify-content: flex-end;
+}
+.justify-content-stretch {
+    justify-content: stretch;
+}
+.justify-content-around {
+    justify-content: space-around;
+}
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-start {
+    align-items: flex-start;
+}
+.align-items-end {
+    align-items: flex-end;
+}
+.align-items-stretch {
+    align-items: stretch;
 }
 
+// common ------------------------------------------------------------
 .container {
-	width: 90%;
-	max-width: 1200px;
-	margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-body {
-	// @if ($nav-type == 0 or $nav-type == 1) {
-	margin-top: $nav-height;
-	// }
-}
-
+// header ------------------------------------------------------------
 header {
-	nav {
-		z-index: 1024;
-		&.nav-type-0,
-		&.nav-type-1 {
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-		}
-		&.nav-type-1.hidden {
-			top: -$nav-height;
-		}
-		background-color: $col-nav-bg;
-		color: $col-nav-col;
-		height: $nav-height;
-		transition: 0.3s all ease-in-out;
+    height: $nav-height;
+    nav {
+        // z-index: 1024;
+        &.nav-type-0,
+        &.nav-type-1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        &.nav-type-1.hidden {
+            top: -$nav-height;
+        }
+        background-color: $col-nav-bg;
+        color: $col-nav-col;
+        height: $nav-height;
+        transition: 0.3s all ease-in-out;
 
-		.container {
-			height: $nav-height;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
+        .container {
+            height: $nav-height;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-		.nav-logo {
-			width: 50px;
-			height: 50px;
-			img {
-				width: 100%;
-				height: 100%;
-			}
-		}
+        .nav-logo {
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
 
-		ul {
-			list-style: none;
-			display: flex;
-			background-color: $col-nav-bg;
-			li {
-				position: relative;
-				a {
-					color: $col-nav-col;
-					font-size: $nav-links-font-size;
-					line-height: $nav-links-font-size;
-					padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2)
-						$nav-links-space-x;
-					text-decoration: none;
-					display: inline-block;
+        ul {
+            list-style: none;
+            display: flex;
+            & > li {
+                position: relative;
+                & > a {
+                    position: relative;
+                    z-index: 1;
+                    color: $col-nav-col;
+                    background-color: $col-nav-bg;
+                    font-size: $nav-links-font-size;
+                    line-height: $nav-links-font-size;
+                    padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2) $nav-links-space-x;
+                    text-decoration: none;
+                    display: inline-block;
 
-					&:hover {
-						background-color: $col-primary;
-						color: $col-secundary;
-					}
-				}
-			}
-		}
+                    &:hover {
+                        background-color: $col-primary;
+                        color: $col-secundary;
+                    }
+                }
+            }
+        }
 
-		ul li:hover .drop-down {
-			transform: translateY(0);
-		}
+        ul li:hover .drop-down {
+            transform: translateY(0);
+            z-index: 0;
+        }
 
-		.drop-down {
-			z-index: -1;
-			position: absolute;
-			transform: translateY(-100%);
-			flex-direction: column;
-			min-width: 100%;
-			background-color: $col-nav-bg;
-			border-radius: 0 0 4px 4px;
-			// border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
-			// border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-			// border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
-			// border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
-			transition: 0.3s all ease-in-out;
-			a {
-				white-space: nowrap;
-				border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
-				width: 100%;
-			}
-			li:last-child a {
-				border-bottom: none;
-			}
-		}
-	}
+        .drop-down {
+            position: absolute;
+            transform: translateY(-100%);
+            flex-direction: column;
+            min-width: 100%;
+            background-color: $col-nav-bg;
+            border-radius: 0 0 4px 4px;
+            // border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
+            // border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+            // border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
+            // border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
+            transition: 0.3s transform ease-in-out;
+            a {
+                white-space: nowrap;
+                border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+                width: 100%;
+            }
+            li:last-child a {
+                border-bottom: none;
+            }
+        }
+    }
+
+    .nav-logo img {
+        min-width: 100%;
+    }
 }
+
+// pages --------------------------------------------------------------
 
 section {
-	height: 100vh;
-	background-color: #ccc;
+    height: 50vh;
+}
+
+// footer--------------------------------------------------------------
+
+// media queries ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// @media (max-width: 575.98px) { }
+
+@media (min-width: 576px) {
+    // bootstrap ------------------------------------------------------
+    .d-sm-none {
+        display: none;
+    }
+    .d-sm-flex {
+        display: flex;
+    }
+    .d-sm-block {
+        display: block;
+    }
+    .flex-direction-sm-row {
+        flex-direction: row;
+    }
+    .flex-direction-sm-column {
+        flex-direction: column;
+    }
+    .flex-direction-sm-row-reverse {
+        flex-direction: row-reverse;
+    }
+    .flex-direction-sm-column-reverse {
+        flex-direction: column-reverse;
+    }
+    .justify-content-sm-center {
+        justify-content: center;
+    }
+    .justify-content-sm-between {
+        justify-content: space-between;
+    }
+    .justify-content-sm-start {
+        justify-content: flex-start;
+    }
+    .justify-content-sm-end {
+        justify-content: flex-end;
+    }
+    .justify-content-sm-stretch {
+        justify-content: stretch;
+    }
+    .justify-content-sm-around {
+        justify-content: space-around;
+    }
+    .justify-content-sm-evenly {
+        justify-content: space-evenly;
+    }
+    .align-items-sm-center {
+        align-items: center;
+    }
+    .align-items-sm-start {
+        align-items: flex-start;
+    }
+    .align-items-sm-end {
+        align-items: flex-end;
+    }
+    .align-items-sm-stretch {
+        align-items: stretch;
+    }
+    // commmon ------------------------------------------------------
+    // header -------------------------------------------------------
+    // pages --------------------------------------------------------
+    // footer -------------------------------------------------------
+}
+
+// @media (max-width: 767.98px) { }
+
+@media (min-width: 768px) {
+    // bootstrap ------------------------------------------------------
+    .d-md-none {
+        display: none;
+    }
+    .d-md-flex {
+        display: flex;
+    }
+    .d-md-block {
+        display: block;
+    }
+    .flex-direction-md-row {
+        flex-direction: row;
+    }
+    .flex-direction-md-column {
+        flex-direction: column;
+    }
+    .flex-direction-md-row-reverse {
+        flex-direction: row-reverse;
+    }
+    .flex-direction-md-column-reverse {
+        flex-direction: column-reverse;
+    }
+    .justify-content-md-center {
+        justify-content: center;
+    }
+    .justify-content-md-between {
+        justify-content: space-between;
+    }
+    .justify-content-md-start {
+        justify-content: flex-start;
+    }
+    .justify-content-md-end {
+        justify-content: flex-end;
+    }
+    .justify-content-md-stretch {
+        justify-content: stretch;
+    }
+    .justify-content-md-around {
+        justify-content: space-around;
+    }
+    .justify-content-md-evenly {
+        justify-content: space-evenly;
+    }
+    .align-items-md-center {
+        align-items: center;
+    }
+    .align-items-md-start {
+        align-items: flex-start;
+    }
+    .align-items-md-end {
+        align-items: flex-end;
+    }
+    .align-items-md-stretch {
+        align-items: stretch;
+    }
+    // commmon ------------------------------------------------------
+    // header -------------------------------------------------------
+    // pages --------------------------------------------------------
+    // footer -------------------------------------------------------
+}
+
+// @media (max-width: 991.98px) { }
+
+@media (min-width: 992px) {
+    // bootstrap ------------------------------------------------------
+    .d-lg-none {
+        display: none;
+    }
+    .d-lg-flex {
+        display: flex;
+    }
+    .d-lg-block {
+        display: block;
+    }
+    .flex-direction-lg-row {
+        flex-direction: row;
+    }
+    .flex-direction-lg-column {
+        flex-direction: column;
+    }
+    .flex-direction-lg-row-reverse {
+        flex-direction: row-reverse;
+    }
+    .flex-direction-lg-column-reverse {
+        flex-direction: column-reverse;
+    }
+    .justify-content-lg-center {
+        justify-content: center;
+    }
+    .justify-content-lg-between {
+        justify-content: space-between;
+    }
+    .justify-content-lg-start {
+        justify-content: flex-start;
+    }
+    .justify-content-lg-end {
+        justify-content: flex-end;
+    }
+    .justify-content-lg-stretch {
+        justify-content: stretch;
+    }
+    .justify-content-lg-around {
+        justify-content: space-around;
+    }
+    .justify-content-lg-evenly {
+        justify-content: space-evenly;
+    }
+    .align-items-lg-center {
+        align-items: center;
+    }
+    .align-items-lg-start {
+        align-items: flex-start;
+    }
+    .align-items-lg-end {
+        align-items: flex-end;
+    }
+    .align-items-lg-stretch {
+        align-items: stretch;
+    }
+    // commmon ------------------------------------------------------
+    // header -------------------------------------------------------
+    // pages --------------------------------------------------------
+    // footer -------------------------------------------------------
+}
+
+// @media (max-width: 1199.98px) { }
+
+@media (min-width: 1200px) {
+    // bootstrap ------------------------------------------------------
+    .d-xl-none {
+        display: none;
+    }
+    .d-xl-flex {
+        display: flex;
+    }
+    .d-xl-block {
+        display: block;
+    }
+    .flex-direction-xl-row {
+        flex-direction: row;
+    }
+    .flex-direction-xl-column {
+        flex-direction: column;
+    }
+    .flex-direction-xl-row-reverse {
+        flex-direction: row-reverse;
+    }
+    .flex-direction-xl-column-reverse {
+        flex-direction: column-reverse;
+    }
+    .justify-content-xl-center {
+        justify-content: center;
+    }
+    .justify-content-xl-between {
+        justify-content: space-between;
+    }
+    .justify-content-xl-start {
+        justify-content: flex-start;
+    }
+    .justify-content-xl-end {
+        justify-content: flex-end;
+    }
+    .justify-content-xl-stretch {
+        justify-content: stretch;
+    }
+    .justify-content-xl-around {
+        justify-content: space-around;
+    }
+    .justify-content-xl-evenly {
+        justify-content: space-evenly;
+    }
+    .align-items-xl-center {
+        align-items: center;
+    }
+    .align-items-xl-start {
+        align-items: flex-start;
+    }
+    .align-items-xl-end {
+        align-items: flex-end;
+    }
+    .align-items-xl-stretch {
+        align-items: stretch;
+    }
+    // commmon ------------------------------------------------------
+    // header -------------------------------------------------------
+    // pages --------------------------------------------------------
+    // footer -------------------------------------------------------
 }

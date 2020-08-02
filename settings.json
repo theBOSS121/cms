@@ -1,59 +1,65 @@
 {
-	"navType": 2,
-	"navLinks": [
-		{
-			"name": "home",
-			"href": "#",
-			"goto": "#home"
-		},
-		{
-			"name": "products",
-			"href": "/products.html",
-			"goto": "#products",
-			"dropDown": [
-				{
-					"name": "products1",
-					"href": null,
-					"goto": "#products"
-				},
-				{
-					"name": "products2",
-					"href": null,
-					"goto": "#products"
-				},
-				{
-					"name": "products3",
-					"href": null,
-					"goto": "#products"
-				}
-			]
-		},
-		{
-			"name": "services",
-			"href": "#",
-			"goto": "#services"
-		},
-		{
-			"name": "about",
-			"href": null,
-			"goto": "#about",
-			"dropDown": [
-				{
-					"name": "about us",
-					"href": null,
-					"goto": "#about"
-				},
-				{
-					"name": "about-you",
-					"href": null,
-					"goto": "#contacts"
-				}
-			]
-		},
-		{
-			"name": "contacts",
-			"href": null,
-			"goto": "#contacts"
-		}
-	]
+    "navType": 0,
+    "navLinks": [
+        {
+            "name": "home",
+            "href": "#",
+            "goto": "#home"
+        },
+        {
+            "name": "products",
+            "href": "/products.html",
+            "goto": "#products",
+            "dropDown": [
+                {
+                    "name": "#products",
+                    "href": null,
+                    "goto": "#products"
+                },
+                {
+                    "name": "#services",
+                    "href": null,
+                    "goto": "#services"
+                },
+                {
+                    "name": "#contacts",
+                    "href": null,
+                    "goto": "#contacts"
+                },
+                {
+                    "name": ".try",
+                    "href": null,
+                    "goto": ".try"
+                }
+            ]
+        },
+        {
+            "name": "services",
+            "href": "#",
+            "goto": "#services"
+        },
+        {
+            "name": "about",
+            "href": null,
+            "goto": "#about",
+            "dropDown": [
+                {
+                    "name": "about us",
+                    "href": null,
+                    "goto": "#about"
+                },
+                {
+                    "name": "about-you",
+                    "href": null,
+                    "goto": "#contacts"
+                }
+            ]
+        },
+        {
+            "name": "contacts",
+            "href": null,
+            "goto": "#contacts"
+        }
+    ],
+    "nav-expend": "md"
 }
