@@ -21,6 +21,19 @@ $nav-links-space-x: 20px;
     box-sizing: border-box;
     font-family: $font;
 }
+// Font Awesome in pseudo elements
+// brands
+// something::before {
+//     font-family: "Font Awesome 5 Brands";
+//     content: "\f16d";
+//     color: #000;
+// }
+// other icons
+// something::after {
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     content: "\f0dd";
+// }
 // bootstrap ----------------------------------------------------------
 .d-none {
     display: none;
