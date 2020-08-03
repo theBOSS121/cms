@@ -1,65 +1,65 @@
 {
-    "navType": 1,
-    "navLinks": [
-        {
-            "name": "home",
-            "href": "#",
-            "goto": "#home"
-        },
-        {
-            "name": "products",
-            "href": null,
-            "goto": "#products",
-            "dropDown": [
-                {
-                    "name": "#products",
-                    "href": "./products.html",
-                    "goto": "#products"
-                },
-                {
-                    "name": "#services",
-                    "href": null,
-                    "goto": "#services"
-                },
-                {
-                    "name": "#contacts",
-                    "href": null,
-                    "goto": "#contacts"
-                },
-                {
-                    "name": ".try",
-                    "href": null,
-                    "goto": ".try"
-                }
-            ]
-        },
-        {
-            "name": "services",
-            "href": "#",
-            "goto": "#services"
-        },
-        {
-            "name": "about",
-            "href": null,
-            "goto": "#about",
-            "dropDown": [
-                {
-                    "name": "about us",
-                    "href": null,
-                    "goto": "#about"
-                },
-                {
-                    "name": "about-you",
-                    "href": null,
-                    "goto": "#contacts"
-                }
-            ]
-        },
-        {
-            "name": "contacts",
-            "href": null,
-            "goto": "#contacts"
-        }
-    ],
-    "navExpend": "sm"
+	"navType": 1,
+	"navLinks": [
+		{
+			"name": "home",
+			"href": "#",
+			"goto": "#home"
+		},
+		{
+			"name": "products",
+			"href": null,
+			"goto": null,
+			"dropDown": [
+				{
+					"name": "#products",
+					"href": "#",
+					"goto": "#products"
+				},
+				{
+					"name": "#services",
+					"href": null,
+					"goto": "#services"
+				},
+				{
+					"name": "#contacts",
+					"href": null,
+					"goto": "#contacts"
+				},
+				{
+					"name": ".try",
+					"href": null,
+					"goto": ".try"
+				}
+			]
+		},
+		{
+			"name": "services",
+			"href": "#",
+			"goto": "#services"
+		},
+		{
+			"name": "about",
+			"href": null,
+			"goto": "#about",
+			"dropDown": [
+				{
+					"name": "about us",
+					"href": null,
+					"goto": "#about"
+				},
+				{
+					"name": "about-you",
+					"href": null,
+					"goto": "#contacts"
+				}
+			]
+		},
+		{
+			"name": "contacts",
+			"href": null,
+			"goto": "#contacts"
+		}
+	],
+	"navExpend": "md"
 }
