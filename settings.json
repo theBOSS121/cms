@@ -9,8 +9,9 @@
 		{
 			"name": "products",
 			"href": null,
-			"goto": null,
-			"dropDown": [
+			"goto": "#products",
+			"dropDown": null,
+			"dropDown2": [
 				{
 					"name": "#products",
 					"href": "#",
@@ -42,7 +43,8 @@
 			"name": "about",
 			"href": null,
 			"goto": "#about",
-			"dropDown": [
+			"dropDown": null,
+			"dropDown2": [
 				{
 					"name": "about us",
 					"href": null,
