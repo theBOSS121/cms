@@ -1,0 +1,167 @@
+header {
+    height: $nav-height;
+    nav {
+        z-index: 1024;
+        &.nav-type-0,
+        &.nav-type-1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        &.nav-type-1.hidden {
+            top: -$nav-height;
+        }
+        background-color: $col-nav-bg;
+        color: $col-nav-col;
+        height: $nav-height;
+        transition: 0.3s all ease-in-out;
+
+        .container {
+            height: $nav-height;
+        }
+
+        .nav-logo {
+            z-index: 1;
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .main-nav {
+            li {
+                position: relative;
+                a {
+                    position: relative;
+                    z-index: 1;
+                    color: $col-nav-col;
+                    background-color: $col-nav-bg;
+                    font-size: $nav-links-font-size;
+                    line-height: $nav-links-font-size;
+                    padding: calc((#{$nav-height} - #{$nav-links-font-size}) / 2) $nav-links-space-x;
+                    display: inline-block;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $col-primary;
+                        color: $col-secundary;
+                    }
+                }
+                // navigation dropdown styles
+                &:hover .dropdown {
+                    transform: translateY(0);
+                    z-index: 0;
+                }
+                .dropdown {
+                    position: absolute;
+                    transform: translateY(-100%);
+                    flex-direction: column;
+                    min-width: 100%;
+                    background-color: $col-nav-bg;
+                    border-radius: 0 0 4px 4px;
+                    // border-top: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-bottom: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-left: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    // border-right: 1px solid darken($color: $col-nav-col, $amount: 10);
+                    transition: 0.3s transform ease-in-out;
+                    a {
+                        white-space: nowrap;
+                        border-bottom: 1px solid rgba($color: $col-nav-col, $alpha: 0.2);
+                        width: 100%;
+                    }
+                    li:last-child a {
+                        border-bottom: none;
+                    }
+                }
+                &.dropdown-parent a {
+                    padding-right: $nav-links-space-x + 10px;
+                }
+                &.dropdown-parent > a::after {
+                    content: "\f0d7";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 100;
+                }
+                &.dropdown-parent:hover > a::after {
+                    content: "\f0d8";
+                }
+
+                &.dropdown-parent > a:hover::after {
+                    color: $col-nav-bg;
+                }
+            }
+        }
+        // when navbar hides dropdowns should hide as well
+        &.nav-type-1.hidden .main-nav li:hover .dropdown {
+            transform: translateY(-100%);
+        }
+        .main-nav-mobile {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            right: -100%;
+            background-color: $col-nav-bg;
+            transition: 0.3s all ease-in-out;
+            li {
+                width: 100%;
+                a {
+                    position: relative;
+                    display: block;
+                    z-index: 1;
+                    color: $col-nav-col;
+                    background-color: $col-nav-bg;
+                    font-size: $nav-links-font-size-mobile;
+                    line-height: $nav-links-font-size;
+                    padding: $nav-links-space-y-mobile 0;
+                    width: 100%;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $col-primary;
+                        color: $col-secundary;
+                    }
+
+                    &:hover {
+                        color: darken($color: $col-nav-col, $amount: 20);
+                    }
+                }
+            }
+        }
+
+        .main-nav-mobile.show {
+            right: 0;
+        }
+
+        .show-hide-menu {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: url("../../img/open-menu.svg");
+            background-size: 40px;
+            background-position: center;
+            float: right;
+            transition: 0.6s;
+            cursor: pointer;
+            /* bug in safari strange rotation of svg, still strange for the first time */
+            transform-origin: center center;
+            transform-box: fill-box;
+            &:hover {
+                background: url("../../img/open-menu-hovered.svg");
+                transform: rotate(180deg);
+            }
+            &.close {
+                background: url("../../img/close-menu.svg");
+                transform: rotate(360deg);
+            }
+        }
+    }
+}

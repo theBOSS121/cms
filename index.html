@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="dist/css/style.min.css" />
     </head>
     <body>
-        <header>
+        <header class="no-select">
             <nav>
                 <div class="container d-flex justify-content-between align-items-center">
                     <a href="#" goto="body" class="nav-logo">
@@ -27,18 +27,9 @@
                 </div>
             </nav>
         </header>
-
-        <div class="hero slider">
-            <div class="slides">
-                <img src="./img/slider/1.jpg" alt="">
-                <img src="./img/slider/2.jpg" alt="">
-                <img src="./img/slider/3.jpg" alt="">
-                <img src="./img/slider/4.jpg" alt="">
-            </div>
-            <div class="btn-prev"><i class="fas fa-chevron-left"></i></div>
-            <div class="btn-next"><i class="fas fa-chevron-right"></i></div>
-        </div>
-
+        <div id="slider" class="slider"></div>
+        <!-- <div id="slider2" class="slider"></div> -->
+        
         <section id="home">Home</section>
         <section id="products">Products</section>
         <section id="services">Services</section>
@@ -47,10 +38,10 @@
         <div class="try">.try</div>
 
         <!-- Scripts -->
-        <script src="js/main.js"></script>
         <script src="js/navigation.js"></script>
         <script src="js/scroll.js"></script>
         <script src="js/slider.js"></script>
+        <script src="js/main.js"></script>
         <!-- FontAwesome SVG (HTML) -->
         <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     </body>

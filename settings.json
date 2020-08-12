@@ -1,67 +1,131 @@
 {
-	"navType": 1,
-	"navLinks": [
-		{
-			"name": "home",
-			"href": "#",
-			"goto": "#home"
-		},
-		{
-			"name": "products",
-			"href": null,
-			"goto": "#products",
-			"dropDown": null,
-			"dropDown2": [
-				{
-					"name": "#products",
-					"href": "#",
-					"goto": "#products"
-				},
-				{
-					"name": "#services",
-					"href": null,
-					"goto": "#services"
-				},
-				{
-					"name": "#contacts",
-					"href": null,
-					"goto": "#contacts"
-				},
-				{
-					"name": ".try",
-					"href": null,
-					"goto": ".try"
-				}
-			]
-		},
-		{
-			"name": "services",
-			"href": "#",
-			"goto": "#services"
-		},
-		{
-			"name": "about",
-			"href": null,
-			"goto": "#about",
-			"dropDown": null,
-			"dropDown2": [
-				{
-					"name": "about us",
-					"href": null,
-					"goto": "#about"
-				},
-				{
-					"name": "about-you",
-					"href": null,
-					"goto": "#contacts"
-				}
-			]
-		},
-		{
-			"name": "contacts",
-			"href": null,
-			"goto": "#contacts"
-		}
-	],
-	"navExpend": "md"
+    "navType": 0,
+    "navLinks": [
+        {
+            "name": "home",
+            "href": "#",
+            "goto": "#home"
+        },
+        {
+            "name": "products",
+            "href": null,
+            "goto": "#products",
+            "dropDown": null,
+            "dropDown2": [
+                {
+                    "name": "#products",
+                    "href": "#",
+                    "goto": "#products"
+                },
+                {
+                    "name": "#services",
+                    "href": null,
+                    "goto": "#services"
+                },
+                {
+                    "name": "#contacts",
+                    "href": null,
+                    "goto": "#contacts"
+                },
+                {
+                    "name": ".try",
+                    "href": null,
+                    "goto": ".try"
+                }
+            ]
+        },
+        {
+            "name": "services",
+            "href": "#",
+            "goto": "#services"
+        },
+        {
+            "name": "about",
+            "href": null,
+            "goto": "#about",
+            "dropDown": null,
+            "dropDown2": [
+                {
+                    "name": "about us",
+                    "href": null,
+                    "goto": "#about"
+                },
+                {
+                    "name": "about-you",
+                    "href": null,
+                    "goto": "#contacts"
+                }
+            ]
+        },
+        {
+            "name": "contacts",
+            "href": null,
+            "goto": "#contacts"
+        }
+    ],
+    "sliders": [
+        {
+            "id": "#slider",
+            "slides": [
+                {
+                    "img": "./img/slider/1.jpg",
+                    "content2": [
+                        {
+                            "type": "h3",
+                            "innerHTML": "H3 tag"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "adw"
+                        },
+                        {
+                            "type": "a",
+                            "innerHTML": "This is a",
+                            "attr": [
+                                {
+                                    "type": "href",
+                                    "value": "./products.html"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "img": "./img/slider/2.jpg",
+                    "content": [
+                        {
+                            "type": "h3",
+                            "innerHTML": "Title 2"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "paragraph"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos esse repellendus!",
+                            "attr": [
+                                {
+                                    "type": "href",
+                                    "value": "./products.html"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "img": "./img/slider/3.jpg"
+                },
+                {
+                    "img": "./img/slider/4.jpg"
+                }
+            ],
+            "autoPlay": true,
+            "autoPlaySpeed": 10000,
+            "arrows": true,
+            "dots": true,
+            "dragging": true
+        }
+    ],
+    "navExpend": "md"
 }

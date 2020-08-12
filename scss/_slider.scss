@@ -1,0 +1,97 @@
+.slider {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - #{$nav-height});
+    overflow: hidden;
+    .slides {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        .slider-slide {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                &:focus {
+                    display: none;
+                }
+            }
+            .slider-content {
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #4dd8ad;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: darken($color: #4dd8ad, $amount: 30);
+            }
+        }
+    }
+
+    .btn-prev,
+    .btn-next {
+        position: absolute;
+        top: calc(50% - #{$nav-height / 2});
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        z-index: 3;
+        cursor: pointer;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            color: #4dd8ad;
+        }
+    }
+    .btn-prev {
+        left: 20px;
+    }
+    .btn-next {
+        right: 20px;
+    }
+
+    .dots {
+        position: absolute;
+        z-index: 3;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+
+        .dot {
+            position: relative;
+            padding: 15px;
+            cursor: pointer;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: $col-nav-col;
+            }
+        }
+    }
+
+    .slider-draggable-area {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+}

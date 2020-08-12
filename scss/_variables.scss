@@ -1,0 +1,16 @@
+// variables ----------------------------------------------------------
+$font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+$col-nav-bg: #02231c;
+$col-nav-col: #4dd8ad;
+$col-primary: #4dd8ad;
+$col-secundary: #02231c;
+
+//  0 -> fixed, 1 -> fixed with hidding, everything else -> top of page
+// set in settings nav-type (class added in navigation.js)
+$nav-height: 60px;
+$nav-links-font-size: 1rem;
+$nav-links-space-x: 20px;
+$nav-menu-btn-size: 1.5rem;
+$nav-links-space-y-mobile: 1rem;
+$nav-links-font-size-mobile: 1.3rem;

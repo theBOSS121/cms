@@ -8,6 +8,7 @@ readJSONFile("settings.json", function (data) {
 function init() {
     setupNavigation();
     setupScroll();
+    setUpSliders();
 }
 
 function readJSONFile(file, callback) {
