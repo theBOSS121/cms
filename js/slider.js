@@ -1,24 +1,30 @@
 function setUpSliders() {
     let sliders = settings.sliders;
+    // loop through all the sliders from settings
     for (let i = 0; i < sliders.length; i++) {
+        // get slider from html
         let slider = document.querySelector(sliders[i].id);
         if (slider == null) {
             console.warn("Slider with id: " + sliders[i].id + " does not exit in HTML");
             continue;
         }
         slider.classList.add("no-select");
+        // add dragable area to slider
         let draggableArea = document.createElement("div");
         draggableArea.classList.add("slider-draggable-area");
         slider.appendChild(draggableArea);
+        // add slides div (slides wrapper, class="slides") to slider
         let slides = document.createElement("div");
         slides.classList.add("slides");
         slides.setAttribute("data-slides-to-show", sliders[i].slidesToShow);
         slider.appendChild(slides);
+        // Add dots to slider
         let sliderDots = document.createElement("div");
         if (sliders[i].dots) {
             sliderDots.classList.add("dots");
             slider.appendChild(sliderDots);
         }
+        // add buttons to slider
         let btnPrev = document.createElement("div");
         let btnNext = document.createElement("div");
         if (sliders[i].arrows) {
@@ -33,17 +39,21 @@ function setUpSliders() {
             btnNextIcon.classList.add("fas", "fa-chevron-right");
             btnNext.appendChild(btnNextIcon);
         }
+        // add every slides (class="slider-slide") to slides div
         for (let j = 0; j < sliders[i].slides.length; j++) {
             let s = document.createElement("div");
             s.classList.add("slider-slide");
+            // add slide img to slide
             let img = document.createElement("img");
             img.src = sliders[i].slides[j].img;
             s.appendChild(img);
+            // add content to slide
             let content = sliders[i].slides[j].content;
             if (content) {
                 let contentDiv = document.createElement("div");
                 contentDiv.classList.add("slider-content");
                 for (let a = 0; a < content.length; a++) {
+                    // add every content element and its attributes
                     let element = document.createElement(content[a].type);
                     element.innerHTML = content[a].innerHTML;
                     if (content[a].attr) {
@@ -56,10 +66,9 @@ function setUpSliders() {
                 }
                 s.appendChild(contentDiv);
             }
-
             s.appendChild(img);
             slides.appendChild(s);
-
+            // add a dot for every slide
             if (sliders[i].dots) {
                 let dot = document.createElement("div");
                 dot.classList.add("dot");
@@ -68,7 +77,7 @@ function setUpSliders() {
         }
         let sliderSlides = slides.querySelectorAll(sliders[i].id + " .slider-slide");
         let dots = document.querySelectorAll(sliders[i].id + " .dots .dot");
-        //      variables for sliding
+        // vettings
         let slidesToShow = 1;
         if (sliders[i].slidesToShow) slidesToShow = sliders[i].slidesToShow;
         let slideWidth = slides.clientWidth / slidesToShow;
@@ -76,11 +85,12 @@ function setUpSliders() {
         if (sliders[i].speed) speed = sliders[i].speed;
         let autoPlaySpeed = 5000;
         if (sliders[i].autoPlaySpeed) autoPlaySpeed = sliders[i].autoPlaySpeed;
+        // variables for sliding
         let currentSlide = 0;
         let currentPixelPosition = 0,
             desiredPixelPosition = 0;
         let numOfSlides = slides.children.length;
-        let sliding = false;
+        let sliding = false; // not currently used, but can determine when sliding
         // cloning first slide, to make first and last the same ------------
         let sSlides = document.querySelectorAll(sliders[i].id + " .slides .slider-slide");
         for (let j = 0; j < sliderSlides.length; j++) {
@@ -100,7 +110,7 @@ function setUpSliders() {
             desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             slides.style.left = currentPixelPosition + "px";
         });
-        // autoplay
+        // autoplay ---------------------------------------------------------
         let autoplay;
         if (sliders[i].autoPlay) {
             startAutoPlay();
@@ -286,7 +296,7 @@ function setUpSliders() {
             desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             slide(speed);
         }
-        //      function that moves from current to desiret position in (duration) miliseconds
+        // function that moves from current to desiret position in (duration) miliseconds
         function slide(duration) {
             sliding = true;
             let startPosintion = currentPixelPosition;
