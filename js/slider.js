@@ -12,6 +12,7 @@ function setUpSliders() {
         slider.appendChild(draggableArea);
         let slides = document.createElement("div");
         slides.classList.add("slides");
+        slides.setAttribute("data-slides-to-show", sliders[i].slidesToShow);
         slider.appendChild(slides);
         let sliderDots = document.createElement("div");
         if (sliders[i].dots) {
@@ -68,6 +69,13 @@ function setUpSliders() {
         let sliderSlides = slides.querySelectorAll(sliders[i].id + " .slider-slide");
         let dots = document.querySelectorAll(sliders[i].id + " .dots .dot");
         //      variables for sliding
+        let slidesToShow = 1;
+        if (sliders[i].slidesToShow) slidesToShow = sliders[i].slidesToShow;
+        let slideWidth = slides.clientWidth / slidesToShow;
+        let speed = 500;
+        if (sliders[i].speed) speed = sliders[i].speed;
+        let autoPlaySpeed = 5000;
+        if (sliders[i].autoPlaySpeed) autoPlaySpeed = sliders[i].autoPlaySpeed;
         let currentSlide = 0;
         let currentPixelPosition = 0,
             desiredPixelPosition = 0;
@@ -82,13 +90,14 @@ function setUpSliders() {
             slides.appendChild(sSlides[j].cloneNode(true));
         }
         // starting offset to middle so you can't reach the edge -----------
-        currentPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
-        desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
+        currentPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
+        desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
         slides.style.left = currentPixelPosition + "px";
         // resize fix ------------------------------------------------------
         window.addEventListener("resize", () => {
-            currentPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
-            desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
+            slideWidth = slides.clientWidth / slidesToShow;
+            currentPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
+            desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             slides.style.left = currentPixelPosition + "px";
         });
         // autoplay
@@ -97,14 +106,11 @@ function setUpSliders() {
             startAutoPlay();
         }
         function startAutoPlay() {
-            if (sliders[i].autoPlaySpeed) {
-                autoplay = setInterval(() => {
-                    moveRight(500);
-                }, sliders[i].autoPlaySpeed);
-            } else {
-                autoplay = setInterval(() => {
-                    moveRight(500);
-                }, 5000);
+            autoplay = setInterval(() => {
+                moveRight(speed);
+            }, autoPlaySpeed);
+            if (speed == autoPlaySpeed) {
+                moveRight(speed);
             }
         }
         function stopAutoPlay() {
@@ -120,8 +126,8 @@ function setUpSliders() {
                     startAutoPlay();
                 }
                 currentSlide = j;
-                desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
-                slide(500);
+                desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
+                slide(speed);
             });
         }
         // dragging slide --------------------------------------------------
@@ -137,26 +143,39 @@ function setUpSliders() {
         let highSpeedTime = currentTime;
 
         if (sliders[i].dragging) {
-            draggableArea.addEventListener("mousedown", (e) => {
-                draggingStart(e.offsetX);
+            slider.addEventListener("mousedown", (e) => {
+                let x = e.offsetX;
+                if (e.target != draggableArea) {
+                    x = e.offsetX + e.target.getBoundingClientRect().left;
+                    if (e.target instanceof HTMLAnchorElement) {
+                        return;
+                    }
+                }
+                draggingStart(x);
             });
             window.addEventListener("mouseup", (e) => {
                 if (startX == currentX) {
                     dragging = false;
                     return;
                 }
-                draggingEnd(e.offsetX);
+                let x = e.offsetX;
+                if (e.target != draggableArea)
+                    x = e.offsetX + e.target.getBoundingClientRect().left;
+                draggingEnd(x);
             });
-            draggableArea.addEventListener("mousemove", (e) => {
-                draggingMove(e.offsetX);
+            slider.addEventListener("mousemove", (e) => {
+                let x = e.offsetX;
+                if (e.target != draggableArea)
+                    x = e.offsetX + e.target.getBoundingClientRect().left;
+                draggingMove(x);
             });
-            draggableArea.addEventListener("touchstart", (e) => {
+            slider.addEventListener("touchstart", (e) => {
                 draggingStart(e.changedTouches[0].clientX);
             });
-            draggableArea.addEventListener("touchend", (e) => {
+            slider.addEventListener("touchend", (e) => {
                 draggingEnd(e.changedTouches[0].clientX);
             });
-            draggableArea.addEventListener("touchmove", (e) => {
+            slider.addEventListener("touchmove", (e) => {
                 draggingMove(e.changedTouches[0].clientX);
             });
         }
@@ -183,16 +202,16 @@ function setUpSliders() {
                     highSpeed = false;
                 }
             }
-            if (Math.abs(endX - startX) > slides.clientWidth / 2 || highSpeedInTime) {
+            if (Math.abs(endX - startX) > slideWidth / 2 || highSpeedInTime) {
                 if (endX - startX > 0) {
-                    moveLeft(500);
+                    moveLeft(speed);
                 } else {
-                    moveRight(500);
+                    moveRight(speed);
                 }
             } else {
-                slide(300);
-                currentPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
-                desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
+                slide(speed / 2);
+                currentPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
+                desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             }
             startX = 0;
             endX = 0;
@@ -225,7 +244,7 @@ function setUpSliders() {
         // btn slide ------------------------------------------------------------------
         if (sliders[i].arrows) {
             btnPrev.addEventListener("click", () => {
-                moveLeft(500);
+                moveLeft(speed);
 
                 if (sliders[i].autoPlay) {
                     stopAutoPlay();
@@ -234,7 +253,7 @@ function setUpSliders() {
             });
 
             btnNext.addEventListener("click", () => {
-                moveRight(500);
+                moveRight(speed);
 
                 if (sliders[i].autoPlay) {
                     stopAutoPlay();
@@ -247,24 +266,24 @@ function setUpSliders() {
             if (currentSlide < 0) {
                 currentSlide += numOfSlides;
                 if (
-                    currentPixelPosition - slides.clientWidth * numOfSlides >
-                    -3 * numOfSlides * slides.clientWidth
+                    currentPixelPosition - slideWidth * numOfSlides >
+                    -3 * numOfSlides * slideWidth
                 ) {
-                    currentPixelPosition -= slides.clientWidth * numOfSlides;
+                    currentPixelPosition -= slideWidth * numOfSlides;
                 }
             }
-            desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
+            desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             slide(speed);
         }
         function moveRight(speed) {
             currentSlide++;
             if (currentSlide > numOfSlides) {
                 currentSlide -= numOfSlides;
-                if (currentPixelPosition + slides.clientWidth * numOfSlides < 0) {
-                    currentPixelPosition += slides.clientWidth * numOfSlides;
+                if (currentPixelPosition + slideWidth * numOfSlides < 0) {
+                    currentPixelPosition += slideWidth * numOfSlides;
                 }
             }
-            desiredPixelPosition = -(currentSlide + numOfSlides) * slides.clientWidth;
+            desiredPixelPosition = -(currentSlide + numOfSlides) * slideWidth;
             slide(speed);
         }
         //      function that moves from current to desiret position in (duration) miliseconds
@@ -278,6 +297,8 @@ function setUpSliders() {
                 if (startTime == null) startTime = currentTime;
                 let timeElapsed = currentTime - startTime;
                 // value from 0 to distance based duration, currentTime on bazier curve -> easeInOut
+                // sample
+                // let run = bazier(0, -0.5, 1.5, 1, timeElapsed / duration) * distance + startPosintion;
                 let run = easeOutCubic(timeElapsed, startPosintion, distance, duration);
                 currentPixelPosition = run;
                 slides.style.left = run + "px";
@@ -300,6 +321,14 @@ function setUpSliders() {
             }
             // function easeOutQuart(t, b, c, d) {
             //     return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+            // }
+            // function linear(t, b, c, d) {
+            //     return c * (t / d) + b;
+            // }
+            // not working desirably
+            // function bazier(p1, p2, p3, p4, t) {
+            //     let a = 1 - t;
+            //     return a * a * a * p1 + 3 * a * a * t * p2 + 3 * a * t * t * p3 + t * t * t * p4;
             // }
             requestAnimationFrame(animation);
         }

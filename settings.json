@@ -80,11 +80,15 @@
                         },
                         {
                             "type": "a",
-                            "innerHTML": "This is a",
+                            "innerHTML": "Home",
                             "attr": [
                                 {
+                                    "type": "goto",
+                                    "value": "#home"
+                                },
+                                {
                                     "type": "href",
-                                    "value": "./products.html"
+                                    "value": "#"
                                 }
                             ]
                         }
@@ -92,7 +96,7 @@
                 },
                 {
                     "img": "./img/slider/2.jpg",
-                    "content": [
+                    "content2": [
                         {
                             "type": "h3",
                             "innerHTML": "Title 2"
@@ -120,11 +124,82 @@
                     "img": "./img/slider/4.jpg"
                 }
             ],
+            "slidesToShow": 1,
             "autoPlay": true,
             "autoPlaySpeed": 10000,
+            "speed": 500,
             "arrows": true,
             "dots": true,
             "dragging": true
+        },
+
+        {
+            "id": "#slider2",
+            "slides": [
+                {
+                    "img": "./img/slider/1.jpg",
+                    "content2": [
+                        {
+                            "type": "h3",
+                            "innerHTML": "H3 tag"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "adw"
+                        },
+                        {
+                            "type": "a",
+                            "innerHTML": "Home",
+                            "attr": [
+                                {
+                                    "type": "goto",
+                                    "value": "#home"
+                                },
+                                {
+                                    "type": "href",
+                                    "value": "#"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "img": "./img/slider/2.jpg",
+                    "content2": [
+                        {
+                            "type": "h3",
+                            "innerHTML": "Title 2"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "paragraph"
+                        },
+                        {
+                            "type": "p",
+                            "innerHTML": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos esse repellendus!",
+                            "attr": [
+                                {
+                                    "type": "href",
+                                    "value": "./products.html"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "img": "./img/slider/3.jpg"
+                },
+                {
+                    "img": "./img/slider/4.jpg"
+                }
+            ],
+            "slidesToShow": 1,
+            "autoPlay": true,
+            "autoPlaySpeed": 1000,
+            "speed": 1000,
+            "arrows": false,
+            "dots": false,
+            "dragging": false
         }
     ],
     "navExpend": "md"

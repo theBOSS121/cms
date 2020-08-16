@@ -7,8 +7,9 @@ readJSONFile("settings.json", function (data) {
 
 function init() {
     setupNavigation();
-    setupScroll();
     setUpSliders();
+    // everything that could have links for scrolling needs to be before this
+    setupScroll();
 }
 
 function readJSONFile(file, callback) {

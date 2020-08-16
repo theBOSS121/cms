@@ -9,8 +9,9 @@
         width: 100%;
         height: 100%;
         .slider-slide {
+            // padding: 0 5px;
             position: relative;
-            min-width: 100%;
+            // min-width: 50%;
             height: 100%;
             img {
                 width: 100%;
@@ -28,8 +29,16 @@
                 transform: translate(-50%, -50%);
                 color: #4dd8ad;
                 padding: 20px;
-                border-radius: 10px;
+                // border-radius: 10px;
                 background-color: darken($color: #4dd8ad, $amount: 30);
+            }
+        }
+        //      ten is max num of  slides
+        @for $i from 1 through 10 {
+            &[data-slides-to-show="#{$i}"] {
+                .slider-slide {
+                    min-width: 100% / $i;
+                }
             }
         }
     }
