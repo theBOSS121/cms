@@ -23,3 +23,17 @@ function readJSONFile(file, callback) {
     };
     rawFile.send(null);
 }
+
+// triggers when the whole page is loded including styles, images and other resources
+document.addEventListener("DOMContentLoaded", (e) => {
+    // collapse
+    let collapses = document.querySelectorAll(".collapse");
+    for (let i = 0; i < collapses.length; i++) {
+        collapses[i].addEventListener("click", (e) => {
+            if(!collapses[i].classList.contains('expended')) {
+                collapses[i].classList.add('expended');
+                collapses[i].style.height = collapses[i]
+            }
+        });
+    }
+});

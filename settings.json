@@ -63,6 +63,7 @@
             "goto": "#contacts"
         }
     ],
+    "navExpend": "md",
     "sliders": [
         {
             "id": "#slider",
@@ -201,6 +202,5 @@
             "dots": false,
             "dragging": false
         }
-    ],
-    "navExpend": "md"
+    ]
 }

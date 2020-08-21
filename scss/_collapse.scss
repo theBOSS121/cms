@@ -1,0 +1,13 @@
+.collapse {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    transition: 0.3s all ease-in-out;
+
+    .collapse-body {
+        height: 0px;
+    }
+    .collapse-body.expended {
+        height: unset;
+    }
+}

@@ -3,11 +3,16 @@
 @import "css-reset";
 @import "header";
 @import "slider";
+@import "collapse";
+
+body {
+    margin-top: 10px;
+}
 
 // hero
 // pages --------------------------------------------------------------
 section {
-    height: 200vh;
+    height: 100vh;
 }
 
 // footer--------------------------------------------------------------
