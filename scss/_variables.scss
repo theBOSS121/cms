@@ -6,6 +6,7 @@ $col-nav-col: #4dd8ad;
 $col-primary: #4dd8ad;
 $col-secundary: #02231c;
 
+// header / nav
 //  0 -> fixed, 1 -> fixed with hidding, everything else -> top of page
 // set in settings nav-type (class added in navigation.js)
 $nav-height: 60px;
@@ -14,3 +15,8 @@ $nav-links-space-x: 20px;
 $nav-menu-btn-size: 1.5rem;
 $nav-links-space-y-mobile: 1rem;
 $nav-links-font-size-mobile: 1.3rem;
+
+// readMore
+$read-more-font-size: 1rem;
+$read-more-line-height: 1.4rem;
+$read-more-max-lines: 4;

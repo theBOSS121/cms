@@ -55,7 +55,6 @@ function setupScroll() {
 
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener("click", function () {
-            console.log("here");
             if (scrollingLinkPressed) secondAnim = true;
             let target = links[i].getAttribute("goto");
             if (target != null) {
@@ -65,7 +64,8 @@ function setupScroll() {
         });
     }
     if (settings.navType == 0 || settings.navType == 1) {
-        navigationHeight = document.querySelector("header nav").clientHeight;
+        let nav = document.querySelector("header nav");
+        if (nav) navigationHeight = nav.clientHeight;
     }
 }
 let secondAnim = false;

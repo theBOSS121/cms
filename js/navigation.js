@@ -1,7 +1,39 @@
 function setupNavigation() {
-    let navHolder = document.querySelector(".main-nav-desktop");
-    let mobileNavHolder = document.querySelector(".main-nav-mobile");
-    let showHideMenu = document.querySelector(".show-hide-menu");
+    let mainNav = document.querySelector(".main-nav");
+    if (!mainNav) {
+        console.warn('<nav class="main-nav"></nav> does not exist in HTML');
+        return;
+    }
+    let mainNavContainer = document.createElement("div");
+    mainNavContainer.classList.add(
+        "container",
+        "d-flex",
+        "justify-content-between",
+        "align-items-center"
+    );
+    // add logo to mainNavigation
+    let navLogo = document.createElement("a");
+    navLogo.classList.add("nav-logo");
+    navLogo.href = "#";
+    navLogo.setAttribute("goto", "body");
+    let navLogoImg = document.createElement("img");
+    navLogoImg.src = settings.navLogoSrc;
+    navLogo.appendChild(navLogoImg);
+    mainNavContainer.appendChild(navLogo);
+    // add main-nav-desktop ul to the navigation
+    let navHolder = document.createElement("ul");
+    navHolder.classList.add("main-nav-desktop");
+    mainNavContainer.appendChild(navHolder);
+    // add main-nav-mobile ul to the navigation
+    let mobileNavHolder = document.createElement("ul");
+    mobileNavHolder.classList.add("main-nav-mobile");
+    mainNavContainer.appendChild(mobileNavHolder);
+    // add show-hide-menu btn to the navigation
+    let showHideMenu = document.createElement("a");
+    showHideMenu.classList.add("show-hide-menu");
+    showHideMenu.href = "#";
+    mainNavContainer.appendChild(showHideMenu);
+
     navHolder.classList.add("d-none", "d-" + settings.navExpend + "-flex");
     mobileNavHolder.classList.add(
         "d-" + settings.navExpend + "-none",
@@ -11,6 +43,7 @@ function setupNavigation() {
         "flex-direction-column",
         "text-align-center"
     );
+    mainNav.appendChild(mainNavContainer);
     showHideMenu.classList.add("d-" + settings.navExpend + "-none");
     // main-nav HTML
     for (let i = 0; i < settings.navLinks.length; i++) {
@@ -75,7 +108,6 @@ function setupNavigation() {
     // mobile navigation HTML
     mobileNavHolder.innerHTML = navHolder.innerHTML;
     // hiding navigation
-    let nav = document.querySelector("header nav");
     let lastYPos = window.pageYOffset;
     let currentYPos = window.pageYOffset;
     let mobileNavShown = false;
@@ -85,9 +117,9 @@ function setupNavigation() {
             if (scrollingLinkPressed) return;
             currentYPos = window.pageYOffset;
             if (lastYPos < currentYPos && currentYPos > 160 && !mobileNavShown) {
-                nav.classList.add("hidden");
+                mainNav.classList.add("hidden");
             } else {
-                nav.classList.remove("hidden");
+                mainNav.classList.remove("hidden");
             }
 
             lastYPos = currentYPos;
@@ -95,9 +127,9 @@ function setupNavigation() {
     }
     // adding classes based on settings
     if (settings.navType == 0) {
-        nav.classList.add("nav-type-0");
+        mainNav.classList.add("nav-type-0");
     } else if (settings.navType == 1) {
-        nav.classList.add("nav-type-1");
+        mainNav.classList.add("nav-type-1");
     }
     // show hide menu
     showHideMenu.addEventListener("click", (e) => {

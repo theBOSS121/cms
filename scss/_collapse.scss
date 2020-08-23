@@ -1,13 +1,16 @@
 .collapse {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    // border-top: 1px solid #ccc;
+    // border-bottom: 1px solid #ccc;
     overflow: hidden;
-    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+    .collapse-header {
+        // padding: 10px;
+    }
 
     .collapse-body {
+        transition: 0.3s all ease-in-out;
         height: 0px;
-    }
-    .collapse-body.expended {
-        height: unset;
     }
 }

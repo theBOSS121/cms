@@ -1,9 +1,12 @@
 @import "variables";
+@import "typography";
 @import "common-classes";
 @import "css-reset";
 @import "header";
 @import "slider";
 @import "collapse";
+@import "read-more";
+@import "tabs";
 
 body {
     margin-top: 10px;

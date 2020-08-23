@@ -63,6 +63,7 @@
             "goto": "#contacts"
         }
     ],
+    "navLogoSrc": "img/logo.svg",
     "navExpend": "md",
     "sliders": [
         {
@@ -201,6 +202,15 @@
             "arrows": false,
             "dots": false,
             "dragging": false
+        }
+    ],
+    "typing": [
+        {
+            "id": "#typing1",
+            "strings": ["Hello World!", "Hola chica"],
+            "typingSpeed": 200,
+            "startDelay": 500,
+            "endDelay": 1000
         }
     ]
 }

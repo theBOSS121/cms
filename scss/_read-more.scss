@@ -1,0 +1,14 @@
+.read-more-container {
+    line-height: $read-more-line-height;
+    font-size: $read-more-font-size;
+    overflow: hidden;
+    transition: 0.3s all ease-in-out;
+
+    &.collapsed {
+        max-height: calc(#{$read-more-max-lines} * #{$read-more-line-height});
+    }
+}
+
+.read-more {
+    color: $col-primary;
+}
