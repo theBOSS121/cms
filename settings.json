@@ -207,10 +207,10 @@
     "typing": [
         {
             "id": "#typing1",
-            "strings": ["Hello World!", "Hola chica"],
-            "typingSpeed": 200,
-            "startDelay": 500,
-            "endDelay": 1000
+            "strings": ["Hello World!", "Hola chica", "que estas dibujando"],
+            "typingSpeed": 500,
+            "startDelay": 2000,
+            "endDelay": 2000
         }
     ]
 }
