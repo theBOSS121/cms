@@ -1,0 +1,38 @@
+$amounts: (5, 10, 15, 20, 25, 30, 35, 40);
+
+.items-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    @each $gap in $amounts {
+        &.gap-#{$gap} {
+            margin: -#{$gap}px;
+            & > .item {
+                margin: #{$gap}px;
+            }
+        }
+    }
+
+    @for $i from 1 through 6 {
+        $v: 1 / $i;
+        $w: percentage($v);
+        // for no gap
+        &.c-#{$i} {
+            flex-wrap: wrap;
+            & > .item {
+                width: #{$w};
+            }
+        }
+        // for all gaps
+        @each $gap in $amounts {
+            $a: #{$gap * 2}px;
+
+            &.c-#{$i}.gap-#{$gap} {
+                flex-wrap: wrap;
+                & > .item {
+                    width: calc(#{$w} - #{$a});
+                }
+            }
+        }
+    }
+}
