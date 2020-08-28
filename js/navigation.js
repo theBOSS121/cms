@@ -14,7 +14,15 @@ function setupNavigation() {
     // add logo to mainNavigation
     let navLogo = document.createElement("a");
     navLogo.classList.add("nav-logo");
-    navLogo.href = "#";
+    if (
+        window.location.pathname == settings.root ||
+        window.location.pathname == settings.root + "index.php"
+    ) {
+        navLogo.href = "#";
+    } else {
+        navLogo.href = "./index.php";
+    }
+
     navLogo.setAttribute("goto", "body");
     let navLogoImg = document.createElement("img");
     navLogoImg.src = settings.navLogoSrc;

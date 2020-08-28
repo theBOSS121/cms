@@ -1,4 +1,6 @@
 {
+    "root": "/cms/",
+    "log": 0,
     "navType": 0,
     "navLinks": [
         {
@@ -8,7 +10,7 @@
         },
         {
             "name": "products",
-            "href": null,
+            "href": "./products.php",
             "goto": "#products",
             "dropDown": null,
             "dropDown2": [

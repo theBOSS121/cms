@@ -54,7 +54,7 @@ function setupScroll() {
     let links = document.querySelectorAll("a");
 
     for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", function () {
+        links[i].addEventListener("click", function (e) {
             if (scrollingLinkPressed) secondAnim = true;
             let target = links[i].getAttribute("goto");
             if (target != null) {
