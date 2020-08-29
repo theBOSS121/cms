@@ -1,8 +1,8 @@
 function setUpTyping() {
     for (let i = 0; i < settings.typing.length; i++) {
         let typing = settings.typing[i];
-        if (!document.querySelector(typing.id)) {
-            // console.warn("typing HTMLElement with id=" + typing.id + " does not exist in HTML");
+        if (!document.querySelector(typing.id) && settings.log > 0) {
+            console.warn("typing HTMLElement with id=" + typing.id + " does not exist in HTML");
             continue;
         }
         type(

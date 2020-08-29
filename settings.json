@@ -1,6 +1,6 @@
 {
     "root": "/cms/",
-    "log": 0,
+    "log": 1,
     "navType": 0,
     "navLinks": [
         {

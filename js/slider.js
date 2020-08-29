@@ -4,8 +4,8 @@ function setUpSliders() {
     for (let i = 0; i < sliders.length; i++) {
         // get slider from html
         let slider = document.querySelector(sliders[i].id);
-        if (slider == null) {
-            // console.warn("Slider with id: " + sliders[i].id + " does not exit in HTML");
+        if (slider == null && settings.log > 0) {
+            console.warn("Slider with id: " + sliders[i].id + " does not exit in HTML");
             continue;
         }
         slider.classList.add("no-select");

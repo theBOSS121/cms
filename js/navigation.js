@@ -1,6 +1,6 @@
 function setupNavigation() {
     let mainNav = document.querySelector(".main-nav");
-    if (!mainNav) {
+    if (!mainNav && settings.log > 0) {
         console.warn('<nav class="main-nav"></nav> does not exist in HTML');
         return;
     }

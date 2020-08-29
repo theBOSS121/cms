@@ -1,7 +1,9 @@
 function smoothScroll(target, duration) {
     let t = document.querySelector(target);
     if (t === null) {
-        console.error("Element with that target not exist: " + target);
+        if (settings.log > 0) {
+            console.warn("Element with that target not exist: " + target);
+        }
         return;
     }
     let tPos = t.getBoundingClientRect().top;
