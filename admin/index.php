@@ -1,11 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CMS Admin Panel</title>
-    </head>
-    <body>
-        <div class="container">admin</div>
-    </body>
-</html>
+<?php  
+    include_once './adminHeaderFooter/pageHeader.php' 
+?>
+<h1>Admin</h1>
+
+    <?php
+        include_once '../includes/dbh.inc.php';
+        
+        $sql = "SELECT * FROM pages;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if($resultCheck < 1) {
+            // header("Location: ../index.php?login=error");
+            exit();			
+        } else {
+            for($i = 0; $i < $resultCheck; $i++) {
+                if($row = mysqli_fetch_assoc($result)) {
+                    echo 
+                    '<div class="d-flex">
+                        <p>'.$row['name'].' </p>
+                        <select name="sections" id="section">
+                            <option value="section">Section</option>
+                        </select>
+                    </div>';   
+                }
+            }
+        }
+
+    ?>
+
+<?php  
+    include_once './adminHeaderFooter/pageFooter.php' 
+?>

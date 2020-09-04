@@ -1,4 +1,46 @@
-<?php  require './pageHeader.php' ?>
+<?php  include_once './headerFooter/pageHeader.php' ?>
+
+<?php
+    
+    include_once './includes/dbh.inc.php';
+    
+
+    $sql = "SELECT * FROM pages;";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if($resultCheck < 1) {
+        // header("Location: ../index.php?login=error");
+        exit();			
+    } else {
+        for($i = 0; $i < $resultCheck; $i++) {
+            if($row = mysqli_fetch_assoc($result)) {
+                echo "<p>". $row['name'] ."</p>";
+                if($row['name'] == 'index') {
+                }
+                include './sections/section.php';
+            }
+        }
+    }
+
+?>
+
+<div class="content">
+
+
+
+
+    <section></section>
+    <section id="home">Home</section>
+    <section id="products">Products</section>
+    <section id="services">Services</section>
+    <section id="about">About</section>
+    <section id="contacts">Contact</section>
+    <div class="try">.try</div>
+
+</div>
+
+<?php include_once './headerFooter/pageFooter.php' ?>
+
 
 <!-- <div id="slider" class="slider"></div> -->
 <!-- <div id="slider2" class="slider"></div> -->
@@ -107,7 +149,6 @@
     </div>
 </div> -->
 <!-- <div id="typing1" class="typing"></div> -->
-
 <!-- <div class="container">
     <a class="btn from-top">From Top</a>
     <a class="btn from-left">From Left</a>
@@ -115,18 +156,3 @@
     <a class="btn from-center">From Center</a>
     <a class="btn from-bottom">From Bottom</a>
 </div> -->
-
-<div class="container">
-    <div class="items-wrapper c-2 text-center gap-0"></div>
-</div>
-
-
-<section></section>
-<section id="home">Home</section>
-<section id="products">Products</section>
-<section id="services">Services</section>
-<section id="about">About</section>
-<section id="contacts">Contact</section>
-<div class="try">.try</div>
-
-<?php require './pageFooter.php' ?>

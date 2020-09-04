@@ -1,7 +1,6 @@
 // get settings
 let settings;
-
-readJSONFile("settings.json", function (data) {
+readJSONFile("./settings.json", function (data) {
     settings = JSON.parse(data);
     init();
 });

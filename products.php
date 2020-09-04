@@ -1,3 +1,3 @@
-<?php  require './pageHeader.php' ?>
+<?php  require './headerFooter/pageHeader.php' ?>
 
-<?php require './pageFooter.php' ?>
+<?php require './headerFooter/pageFooter.php' ?>

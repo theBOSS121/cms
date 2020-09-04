@@ -11,4 +11,4 @@
         <link rel="stylesheet" href="dist/css/style.min.css" />
     </head>
     <body>
-    <?php require './header.php' ?>
+    <?php require './headerFooter/header.php' ?>

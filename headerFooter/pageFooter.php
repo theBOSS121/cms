@@ -1,4 +1,4 @@
-        <?php require './footer.php' ?>
+        <?php require './headerFooter/footer.php' ?>
         <!-- Scripts -->
         <script src="js/navigation.js"></script>
         <script src="js/scroll.js"></script>
