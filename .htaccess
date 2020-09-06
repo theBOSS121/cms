@@ -1,0 +1,11 @@
+# 1 --- Establish a custom 404 File not Found page ---
+
+ErrorDocument 404 /cms/fileNotFound.php
+
+# 2 --- Prevent directory file listening in all of your folders ---
+
+IndexIgnore *
+
+# 3 --- Make pages render without their extensions ---
+
+Options +MultiViews

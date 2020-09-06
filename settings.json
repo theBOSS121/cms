@@ -10,7 +10,7 @@
         },
         {
             "name": "products",
-            "href": "./products.php",
+            "href": "./products",
             "goto": "#products",
             "dropDown": null,
             "dropDown2": [

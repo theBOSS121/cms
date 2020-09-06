@@ -16,11 +16,11 @@ function setupNavigation() {
     navLogo.classList.add("nav-logo");
     if (
         window.location.pathname == settings.root ||
-        window.location.pathname == settings.root + "index.php"
+        window.location.pathname == settings.root + "index"
     ) {
         navLogo.href = "#";
     } else {
-        navLogo.href = "./index.php";
+        navLogo.href = "./index";
     }
 
     navLogo.setAttribute("goto", "body");

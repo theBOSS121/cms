@@ -1,34 +1,8 @@
-<?php  include_once './headerFooter/pageHeader.php' ?>
-
-<?php
-    
-    include_once './includes/dbh.inc.php';
-    
-
-    $sql = "SELECT * FROM pages;";
-    $result = mysqli_query($conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
-    if($resultCheck < 1) {
-        // header("Location: ../index.php?login=error");
-        exit();			
-    } else {
-        for($i = 0; $i < $resultCheck; $i++) {
-            if($row = mysqli_fetch_assoc($result)) {
-                echo "<p>". $row['name'] ."</p>";
-                if($row['name'] == 'index') {
-                }
-                include './sections/section.php';
-            }
-        }
-    }
-
-?>
-
-<div class="content">
+<?php  include_once './includes/pageHeader.inc.php' ?>
+<?php  include_once './includes/content.inc.php' ?>
 
 
-
-
+<!-- <div class="content">
     <section></section>
     <section id="home">Home</section>
     <section id="products">Products</section>
@@ -36,10 +10,9 @@
     <section id="about">About</section>
     <section id="contacts">Contact</section>
     <div class="try">.try</div>
+</div> -->
 
-</div>
-
-<?php include_once './headerFooter/pageFooter.php' ?>
+<?php include_once './includes/pageFooter.inc.php' ?>
 
 
 <!-- <div id="slider" class="slider"></div> -->
