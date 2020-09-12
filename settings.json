@@ -1,5 +1,6 @@
 {
     "root": "/cms/",
+    "defaultLanguage": "en",
     "log": 1,
     "navType": 0,
     "navLinks": [

@@ -1,12 +1,13 @@
 // get settings
 let settings;
-readJSONFile("./settings.json", function (data) {
+readJSONFile("/cms/settings.json", function (data) {
     settings = JSON.parse(data);
     init();
 });
 
 function init() {
     setupNavigation();
+    setupLanguage();
     setUpSliders();
     setUpTyping();
     // everything that could have links for scrolling needs to be before this

@@ -1,5 +1,6 @@
 <div class="container">
-    <p>'section.php' hello world this is a section</p>
+    <!-- <p>'section.php' hello world this is a section</p> -->
+    <p lang-id="text"></p>
     <!-- <div class="container tabs-container">
         <div class="tabs-nav d-flex justify-content-center align-items-center no-select">
             <div class="tabs-nav-item" data-tab-id="tab-1">Tab1</div>
